@@ -532,5 +532,5 @@ Mapa de excepciones → HTTP:
 
 ## Licencia y autoría
 
-Prueba técnica desarrollada por **BC Support** (`abaps@bcsupport.com.co`).
+Prueba técnica desarrollada por **Juan Velasquez**
 Uso interno.
