@@ -1,0 +1,39 @@
+<Project>
+
+  <!--
+    Propiedades comunes aplicadas a TODOS los proyectos de la solución.
+    Centraliza versiones, configuración de compilación y generación de documentación XML.
+  -->
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+
+    <!-- Documentación XML obligatoria en toda la solución -->
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <!--
+      CS1591: Missing XML comment for publicly visible type or member.
+      Lo suprimimos para no romper el build en archivos generados (Migrations, etc.).
+      El equipo debe documentar manualmente todos los tipos públicos.
+
+      NU1903: vulnerabilidad reportada en AutoMapper 13.x (GHSA-rvv3-g6hj-g44x).
+      Explotable únicamente cuando se carga configuración de mapeo desde entrada
+      externa no confiable; no aplica a nuestro uso (perfiles estáticos en código).
+      AutoMapper 14+ cambió a licencia comercial, por lo que se mantiene 13.x.
+    -->
+    <!--
+      CS1573: param sin etiqueta cuando otros sí la tienen. Generaríamos ruido
+      al exigir documentar el CancellationToken en cada controller/servicio.
+    -->
+    <NoWarn>$(NoWarn);CS1591;CS1573;NU1903</NoWarn>
+
+    <!-- Metadatos del producto -->
+    <Authors>BC Support</Authors>
+    <Company>BC Support</Company>
+    <Product>FutbolManager</Product>
+    <NeutralLanguage>es-CO</NeutralLanguage>
+  </PropertyGroup>
+
+</Project>

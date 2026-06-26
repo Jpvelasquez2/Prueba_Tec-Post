@@ -1,0 +1,22 @@
+@import "tailwindcss";
+
+/* -----------------------------------------------------------------------------
+   Estilos globales — FutbolManager
+   - Tailwind v4 (importado arriba) provee las utilidades.
+   - Aquí solo van tokens de diseño, capas base/utilities propias y resets que
+     no aporta Tailwind por defecto.
+   ----------------------------------------------------------------------------- */
+
+:root {
+  --color-brand: #16a34a;       /* verde cancha */
+  --color-brand-dark: #14532d;
+  --color-surface: #ffffff;
+  --color-surface-alt: #f8fafc;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  background-color: var(--color-surface-alt);
+}

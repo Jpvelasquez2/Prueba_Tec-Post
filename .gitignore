@@ -1,0 +1,31 @@
+# SDKs portables (no versionar binarios)
+herramientas/nodejs/
+herramientas/dotnet-sdk/
+
+# .NET
+**/bin/
+**/obj/
+*.user
+*.suo
+.vs/
+
+# Test artifacts (cobertura, trx, etc.)
+**/TestResults/
+
+# Node / Angular
+**/node_modules/
+**/dist/
+**/.angular/
+**/coverage/
+npm-debug.log*
+.env
+.env.local
+
+# IDEs
+.idea/
+.vscode/
+*.swp
+
+# Sistema
+.DS_Store
+Thumbs.db

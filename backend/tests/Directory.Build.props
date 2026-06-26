@@ -1,0 +1,17 @@
+<Project>
+
+  <!--
+    Hereda de backend/Directory.Build.props y sobreescribe lo que NO aplica
+    a un proyecto de pruebas:
+      - GenerateDocumentationFile: false, no tiene sentido generar XML docs
+        para los assemblies de test (no se consumen desde fuera).
+      - IsPackable: false, los tests no se publican como paquetes NuGet.
+  -->
+  <Import Project="..\Directory.Build.props" />
+
+  <PropertyGroup>
+    <GenerateDocumentationFile>false</GenerateDocumentationFile>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+</Project>
