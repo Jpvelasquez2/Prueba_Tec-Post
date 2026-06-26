@@ -14,7 +14,9 @@ public sealed class PartidoConfiguration : IEntityTypeConfiguration<Partido>
     /// <inheritdoc />
     public void Configure(EntityTypeBuilder<Partido> builder)
     {
-        builder.ToTable("Partidos");
+        // Declarar el trigger AFTER UPDATE creado en SQL para que EF Core
+        // no use la cláusula OUTPUT al hacer UPDATE (incompatible con triggers).
+        builder.ToTable("Partidos", t => t.HasTrigger("TR_Partidos_AfterUpdate_UpdatedAt"));
 
         builder.HasKey(p => p.Id);
         builder.Property(p => p.Id).ValueGeneratedOnAdd();
@@ -32,7 +34,11 @@ public sealed class PartidoConfiguration : IEntityTypeConfiguration<Partido>
 
         // Enum mapeado a TINYINT con HasConversion para que EF use los IDs
         // reservados (1=Programado, 2=Jugado, 3=Suspendido, 4=Cancelado).
+        // La columna en SQL se llama EstadoId (con sufijo Id porque es FK al
+        // catálogo EstadosPartido); en la entidad la propiedad es Estado.
+        // Sin HasColumnName, EF generaría INSERT contra una columna inexistente.
         builder.Property(p => p.Estado)
+            .HasColumnName("EstadoId")
             .HasColumnType("tinyint")
             .HasConversion<byte>()
             .IsRequired();

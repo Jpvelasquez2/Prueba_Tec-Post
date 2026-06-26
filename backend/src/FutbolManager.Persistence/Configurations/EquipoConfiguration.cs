@@ -13,7 +13,9 @@ public sealed class EquipoConfiguration : IEntityTypeConfiguration<Equipo>
     /// <inheritdoc />
     public void Configure(EntityTypeBuilder<Equipo> builder)
     {
-        builder.ToTable("Equipos");
+        // Declarar el trigger AFTER UPDATE creado en SQL para que EF Core
+        // no use la cláusula OUTPUT al hacer UPDATE (incompatible con triggers).
+        builder.ToTable("Equipos", t => t.HasTrigger("TR_Equipos_AfterUpdate_UpdatedAt"));
 
         builder.HasKey(e => e.Id);
         builder.Property(e => e.Id).ValueGeneratedOnAdd();
